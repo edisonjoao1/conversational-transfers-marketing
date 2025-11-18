@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversational Transfers | Send Money Like You Send Texts</title>
+    <meta name="description" content="Stop filling forms. Start chatting. Send money to 166 countries through conversation with AI. Real transfers. Real simple.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --electric: #00ff88;
+            --cyber: #ff0080;
+            --deep: #0a0a1f;
+            --bright: #ffffff;
+            --muted: #6b7280;
+        }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--deep);
+            color: var(--bright);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        ::selection {
+            background: var(--electric);
+            color: var(--deep);
+        }
+
+        /* Animated Background */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(var(--electric) 1px, transparent 1px),
+                linear-gradient(90deg, var(--electric) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.03;
+            z-index: 0;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Navigation */
+        nav {
+            padding: 30px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--electric), var(--cyber));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-cta {
+            padding: 12px 24px;
+            background: var(--electric);
+            color: var(--deep);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.2s;
+            border: 2px solid var(--electric);
+        }
+
+        .nav-cta:hover {
+            background: transparent;
+            color: var(--electric);
+            transform: translateY(-2px);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 30px;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, var(--electric), var(--cyber));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+        }
+
+        .underline-cyber {
+            position: relative;
+            display: inline-block;
+        }
+
+        .underline-cyber::after {
+            content: '';
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: var(--cyber);
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--muted);
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+
+        .stat-huge {
+            font-size: 10rem;
+            font-weight: 700;
+            line-height: 1;
+            background: linear-gradient(135deg, var(--electric), var(--cyber));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .stat-label {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .stat-desc {
+            font-size: 1.1rem;
+            color: var(--muted);
+            max-width: 400px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 18px 36px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            border: 2px solid;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--electric);
+            color: var(--deep);
+            border-color: var(--electric);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--bright);
+            border-color: var(--bright);
+        }
+
+        .btn-outline:hover {
+            background: var(--bright);
+            color: var(--deep);
+        }
+
+        /* Terminal Demo */
+        .terminal {
+            background: #1a1a2e;
+            border: 2px solid var(--electric);
+            border-radius: 12px;
+            padding: 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem;
+            box-shadow: 0 0 40px rgba(0, 255, 136, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .terminal::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: linear-gradient(135deg, var(--electric), var(--cyber));
+            opacity: 0.1;
+        }
+
+        .terminal-header {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            padding-top: 10px;
+        }
+
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot-1 { background: var(--cyber); }
+        .dot-2 { background: var(--electric); }
+        .dot-3 { background: #fbbf24; }
+
+        .terminal-line {
+            margin: 12px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .terminal-line::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--electric);
+        }
+
+        .user-input { color: var(--electric); }
+        .ai-response { color: var(--cyber); }
+        .system-msg { color: #fbbf24; }
+        .success { color: var(--electric); font-weight: 600; }
+
+        /* Marquee */
+        .marquee-section {
+            padding: 80px 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .marquee {
+            display: flex;
+            gap: 40px;
+            animation: scroll 40s linear infinite;
+            width: fit-content;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .marquee-item {
+            font-size: 4rem;
+            font-weight: 700;
+            white-space: nowrap;
+            background: linear-gradient(135deg, var(--electric), var(--cyber));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Sections */
+        section {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .section-tag {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--electric);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 30px;
+            line-height: 1.1;
+        }
+
+        .section-subtitle {
+            font-size: 1.3rem;
+            color: var(--muted);
+            margin-bottom: 60px;
+            max-width: 700px;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 40px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--electric), var(--cyber));
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            border-color: var(--electric);
+            transform: translateY(-8px);
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .card-text {
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        /* World Map Section */
+        .world-section {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.05), rgba(255, 0, 128, 0.05));
+            border-top: 2px solid var(--electric);
+            border-bottom: 2px solid var(--cyber);
+        }
+
+        .regions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 80px;
+        }
+
+        .region {
+            text-align: center;
+        }
+
+        .region-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            filter: grayscale(0);
+            transition: all 0.3s;
+        }
+
+        .region:hover .region-icon {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        .region-count {
+            font-size: 4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--electric), var(--cyber));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .region-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .region-examples {
+            font-size: 0.95rem;
+            color: var(--muted);
+            margin-top: 10px;
+        }
+
+        /* Comparison Table */
+        .comparison {
+            background: rgba(255, 255, 255, 0.02);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 40px;
+            margin-top: 60px;
+            overflow-x: auto;
+        }
+
+        .comparison table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .comparison th {
+            padding: 20px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .comparison td {
+            padding: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .comparison .highlight-col {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(255, 0, 128, 0.1));
+            font-weight: 600;
+        }
+
+        .comparison .win {
+            color: var(--electric);
+        }
+
+        /* Footer */
+        footer {
+            padding: 80px 0 40px;
+            border-top: 2px solid rgba(255, 255, 255, 0.1);
+            margin-top: 120px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--electric), var(--cyber));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+        }
+
+        .footer-tagline {
+            color: var(--muted);
+            font-size: 1.1rem;
+        }
+
+        .footer-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--electric);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-link {
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-link:hover {
+            color: var(--electric);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--muted);
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .stat-huge {
+                font-size: 6rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .marquee-item {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .stat-huge {
+                font-size: 4rem;
+            }
+
+            .btn-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+
+    <!-- Navigation -->
+    <nav class="container">
+        <div class="logo">CONVERSATIONAL.</div>
+        <a href="https://github.com/edisonjoao1/conversational-transfers" class="nav-cta">GitHub →</a>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div>
+                    <h1>
+                        Send money like you <span class="highlight">send texts</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        No forms. No dropdowns. No banking jargon. Just chat with AI and send money to anywhere in the world.
+                    </p>
+                    <div class="btn-group">
+                        <a href="#demo" class="btn btn-primary">See it work →</a>
+                        <a href="https://github.com/edisonjoao1/conversational-transfers" class="btn btn-outline">GitHub</a>
+                    </div>
+                </div>
+                <div>
+                    <div class="stat-huge">166</div>
+                    <div class="stat-label">Countries. Zero friction.</div>
+                    <p class="stat-desc">
+                        The most comprehensive coverage through Wise API. From Argentina to Zimbabwe, if you can chat, you can send money there.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marquee -->
+    <div class="marquee-section">
+        <div class="marquee">
+            <span class="marquee-item">MEXICO</span>
+            <span class="marquee-item">•</span>
+            <span class="marquee-item">COLOMBIA</span>
+            <span class="marquee-item">•</span>
+            <span class="marquee-item">BRAZIL</span>
+            <span class="marquee-item">•</span>
+            <span class="marquee-item">INDIA</span>
+            <span class="marquee-item">•</span>
+            <span class="marquee-item">PHILIPPINES</span>
+            <span class="marquee-item">•</span>
+            <span class="marquee-item">NIGERIA</span>
+            <span class="marquee-item">•</span>
+            <span class="marquee-item">VIETNAM</span>
+            <span class="marquee-item">•</span>
+            <span class="marquee-item">MEXICO</span>
+            <span class="marquee-item">•</span>
+            <span class="marquee-item">COLOMBIA</span>
+            <span class="marquee-item">•</span>
+            <span class="marquee-item">BRAZIL</span>
+            <span class="marquee-item">•</span>
+            <span class="marquee-item">INDIA</span>
+            <span class="marquee-item">•</span>
+            <span class="marquee-item">PHILIPPINES</span>
+            <span class="marquee-item">•</span>
+            <span class="marquee-item">NIGERIA</span>
+            <span class="marquee-item">•</span>
+            <span class="marquee-item">VIETNAM</span>
+            <span class="marquee-item">•</span>
+        </div>
+    </div>
+
+    <!-- Demo Section -->
+    <section id="demo">
+        <div class="container">
+            <div class="section-tag">LIVE DEMO</div>
+            <h2>This is how <span class="underline-cyber">simple</span> it should be</h2>
+            <p class="section-subtitle">
+                Traditional banks want you to remember SWIFT codes, routing numbers, and account types. We just want you to know how to chat.
+            </p>
+
+            <div class="terminal fade-in">
+                <div class="terminal-header">
+                    <div class="terminal-dot dot-1"></div>
+                    <div class="terminal-dot dot-2"></div>
+                    <div class="terminal-dot dot-3"></div>
+                </div>
+                <div class="terminal-line user-input">You: Send $100 to Maria in Mexico</div>
+                <div class="terminal-line ai-response">AI: I'll help you with that. I need Maria's CLABE number.</div>
+                <div class="terminal-line user-input">You: 032180000118359719</div>
+                <div class="terminal-line system-msg">System: Creating transfer via Wise API...</div>
+                <div class="terminal-line success">✓ Transfer Complete!</div>
+                <div class="terminal-line">
+                    <br>
+                    💰 Sent: $100.00 USD<br>
+                    📩 Maria receives: 1,847.50 MXN<br>
+                    💱 Rate: 18.48 MXN/USD<br>
+                    💵 Fee: $2.99<br>
+                    ⏱️ Delivery: ~35 minutes<br>
+                    🆔 ID: #55656193
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- World Coverage -->
+    <section class="world-section">
+        <div class="container">
+            <div class="section-tag">GLOBAL REACH</div>
+            <h2>Every corner of the planet</h2>
+            <p class="section-subtitle">
+                166 countries. 150+ currencies. One conversation.
+            </p>
+
+            <div class="regions-grid">
+                <div class="region">
+                    <div class="region-icon">🌎</div>
+                    <div class="region-count">35+</div>
+                    <div class="region-name">Americas</div>
+                    <div class="region-examples">USA • Mexico • Brazil • Canada • Colombia</div>
+                </div>
+                <div class="region">
+                    <div class="region-icon">🌍</div>
+                    <div class="region-count">50+</div>
+                    <div class="region-name">Europe</div>
+                    <div class="region-examples">UK • Germany • France • Spain • Italy</div>
+                </div>
+                <div class="region">
+                    <div class="region-icon">🌏</div>
+                    <div class="region-count">45+</div>
+                    <div class="region-name">Asia-Pacific</div>
+                    <div class="region-examples">India • China • Japan • Philippines • Australia</div>
+                </div>
+                <div class="region">
+                    <div class="region-icon">🌍</div>
+                    <div class="region-count">25+</div>
+                    <div class="region-name">Africa</div>
+                    <div class="region-examples">Nigeria • Kenya • South Africa • Ghana</div>
+                </div>
+                <div class="region">
+                    <div class="region-icon">🌏</div>
+                    <div class="region-count">11+</div>
+                    <div class="region-name">Middle East</div>
+                    <div class="region-examples">UAE • Saudi Arabia • Israel • Turkey</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section>
+        <div class="container">
+            <div class="section-tag">WHY IT WORKS</div>
+            <h2>Built different</h2>
+            <p class="section-subtitle">
+                This isn't another fintech clone. This is what happens when you rebuild money transfers from first principles.
+            </p>
+
+            <div class="cards-grid">
+                <div class="card fade-in">
+                    <span class="card-icon">⚡</span>
+                    <h3 class="card-title">30 Second Transfers</h3>
+                    <p class="card-text">
+                        Banks take 10 minutes of form-filling. We take one sentence. That's 20x faster.
+                    </p>
+                </div>
+                <div class="card fade-in">
+                    <span class="card-icon">🧠</span>
+                    <h3 class="card-title">AI Handles Complexity</h3>
+                    <p class="card-text">
+                        Colombian IDs, Mexican CLABEs, European IBANs - the AI knows them all. You don't have to.
+                    </p>
+                </div>
+                <div class="card fade-in">
+                    <span class="card-icon">💱</span>
+                    <h3 class="card-title">Real-Time Rates</h3>
+                    <p class="card-text">
+                        Live rates from Wise API. Not estimates. Not markups. Just the real mid-market rate.
+                    </p>
+                </div>
+                <div class="card fade-in">
+                    <span class="card-icon">🔒</span>
+                    <h3 class="card-title">Bank-Level Security</h3>
+                    <p class="card-text">
+                        PSD2 compliant. Reference architecture. Your sensitive data never touches the AI.
+                    </p>
+                </div>
+                <div class="card fade-in">
+                    <span class="card-icon">🌐</span>
+                    <h3 class="card-title">Multi-Platform</h3>
+                    <p class="card-text">
+                        Claude Desktop (live), ChatGPT (beta), WhatsApp (soon). Same backend everywhere.
+                    </p>
+                </div>
+                <div class="card fade-in">
+                    <span class="card-icon">💰</span>
+                    <h3 class="card-title">Save 85% on Fees</h3>
+                    <p class="card-text">
+                        Banks charge $25-45 per transfer. We charge $2.99-4.65. That's your money, not theirs.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison -->
+    <section>
+        <div class="container">
+            <div class="section-tag">THE NUMBERS</div>
+            <h2>Not even close</h2>
+            <p class="section-subtitle">
+                See how we stack up against traditional banks and money transfer apps
+            </p>
+
+            <div class="comparison">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Banks</th>
+                            <th>Transfer Apps</th>
+                            <th class="highlight-col">Conversational</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Time to send</strong></td>
+                            <td>10-15 min</td>
+                            <td>3-5 min</td>
+                            <td class="highlight-col win">30 seconds</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Interface</strong></td>
+                            <td>15+ form fields</td>
+                            <td>5-10 step app</td>
+                            <td class="highlight-col win">Just chat</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Fees</strong></td>
+                            <td>$25-45</td>
+                            <td>$3-10</td>
+                            <td class="highlight-col win">$2.99-4.65</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Countries</strong></td>
+                            <td>10-15</td>
+                            <td>20-30</td>
+                            <td class="highlight-col win">166</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Learning curve</strong></td>
+                            <td>High - banking jargon</td>
+                            <td>Medium - app navigation</td>
+                            <td class="highlight-col win">Zero - just chat</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Hidden fees</strong></td>
+                            <td>Yes - rate markups</td>
+                            <td>Sometimes</td>
+                            <td class="highlight-col win">Never</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section>
+        <div class="container">
+            <div class="section-tag">WHO IT'S FOR</div>
+            <h2>Real people. Real problems.</h2>
+            <p class="section-subtitle">
+                Whether you're supporting family across borders or paying contractors worldwide, we've got you.
+            </p>
+
+            <div class="cards-grid">
+                <div class="card fade-in">
+                    <span class="card-icon">👨‍👩‍👧‍👦</span>
+                    <h3 class="card-title">Family Remittances</h3>
+                    <p class="card-text">
+                        "I send $500 home every month. Used to take 30 minutes. Now it takes 30 seconds." - Maria, nurse in NYC
+                    </p>
+                </div>
+                <div class="card fade-in">
+                    <span class="card-icon">💼</span>
+                    <h3 class="card-title">Freelance Payments</h3>
+                    <p class="card-text">
+                        "I pay contractors in 8 countries. One chat handles everything." - Alex, agency owner
+                    </p>
+                </div>
+                <div class="card fade-in">
+                    <span class="card-icon">🎓</span>
+                    <h3 class="card-title">Student Support</h3>
+                    <p class="card-text">
+                        "My daughter studies abroad. Emergency money in 30 seconds, not 3 days." - James, father
+                    </p>
+                </div>
+                <div class="card fade-in">
+                    <span class="card-icon">🏢</span>
+                    <h3 class="card-title">Small Business</h3>
+                    <p class="card-text">
+                        "Pay suppliers while on calls. Real-time rates mean I always get the best deal." - Sarah, e-commerce
+                    </p>
+                </div>
+                <div class="card fade-in">
+                    <span class="card-icon">🆘</span>
+                    <h3 class="card-title">Emergency Help</h3>
+                    <p class="card-text">
+                        "Friend stranded abroad? Send money in under a minute through chat." - David, traveler
+                    </p>
+                </div>
+                <div class="card fade-in">
+                    <span class="card-icon">🌍</span>
+                    <h3 class="card-title">NGO Operations</h3>
+                    <p class="card-text">
+                        "Projects in 12 countries. Zero training needed - everyone can chat." - Emma, coordinator
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section>
+        <div class="container" style="text-align: center;">
+            <div class="section-tag">READY?</div>
+            <h2>Stop filling forms.<br>Start sending money.</h2>
+            <p class="section-subtitle" style="margin-left: auto; margin-right: auto;">
+                Open source. Well documented. Deploy in minutes. Or just star us on GitHub and watch the revolution unfold.
+            </p>
+            <div class="btn-group" style="justify-content: center;">
+                <a href="https://github.com/edisonjoao1/conversational-transfers" class="btn btn-primary">Get Started →</a>
+                <a href="https://github.com/edisonjoao1/conversational-transfers/blob/main/DEVELOPER-DOCS.md" class="btn btn-outline">Read Docs</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-brand">CONVERSATIONAL.</div>
+                    <p class="footer-tagline">
+                        Making money transfers as easy as sending a text. Built with Wise API, powered by AI, loved by humans.
+                    </p>
+                </div>
+                <div>
+                    <div class="footer-title">Product</div>
+                    <div class="footer-links">
+                        <a href="#demo" class="footer-link">Live Demo</a>
+                        <a href="https://github.com/edisonjoao1/conversational-transfers" class="footer-link">GitHub</a>
+                        <a href="https://github.com/edisonjoao1/conversational-transfers/blob/main/DEVELOPER-DOCS.md" class="footer-link">Documentation</a>
+                    </div>
+                </div>
+                <div>
+                    <div class="footer-title">Platforms</div>
+                    <div class="footer-links">
+                        <a href="https://github.com/edisonjoao1/conversational-transfers" class="footer-link">Claude Desktop</a>
+                        <a href="https://github.com/edisonjoao1/chatgpt-transfers" class="footer-link">ChatGPT</a>
+                        <a href="#" class="footer-link">WhatsApp (Soon)</a>
+                    </div>
+                </div>
+                <div>
+                    <div class="footer-title">Resources</div>
+                    <div class="footer-links">
+                        <a href="https://wise.com" class="footer-link">Powered by Wise</a>
+                        <a href="https://github.com/edisonjoao1/conversational-transfers/blob/main/TROUBLESHOOTING.md" class="footer-link">Troubleshooting</a>
+                        <a href="https://github.com/edisonjoao1/conversational-transfers/issues" class="footer-link">Report Issue</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>
+                    Built by innovators for innovators • Open Source (MIT) • November 2025 • v2.0.0<br>
+                    Not affiliated with Wise, but powered by their excellent API
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

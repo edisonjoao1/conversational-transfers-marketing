@@ -1,0 +1,21 @@
+{
+  "currency": "COP",
+  "type": "colombia",
+  "profile": 29182377,
+  "accountHolderName": "Edison Espinosa",
+  "details": {
+    "legalType": "PRIVATE",
+    "bankCode": "COLOCOBM",
+    "accountNumber": "78800058952",
+    "accountType": "SAVINGS",
+    "phoneNumber": "3136379718",
+    "idDocumentType": "CC",
+    "idDocumentNumber": "1234567890",
+    "address": {
+      "country": "CO",
+      "city": "Bogota",
+      "firstLine": "Calle 110 #45-47",
+      "postCode": "110111"
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "name": "mybambu-claude-whatsapp",
+  "version": "1.0.0",
+  "description": "MyBambu MCP server for Claude Desktop and WhatsApp - Standard MCP protocol with Wise API integration",
+  "type": "module",
+  "main": "./dist/server.js",
+  "scripts": {
+    "start": "node dist/server.js",
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "lint": "tsc --noEmit"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "claude",
+    "whatsapp",
+    "money-transfer",
+    "wise-api",
+    "remittance"
+  ],
+  "author": "Edison Espinosa",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4",
+    "axios": "^1.13.2",
+    "dotenv": "^17.2.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.0"
+  }
+}
