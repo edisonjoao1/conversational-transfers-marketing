@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conversational Transfers | Send Money Like You Send Texts</title>
-    <meta name="description" content="Stop filling forms. Start chatting. Send money to 166 countries through conversation with AI. Real transfers. Real simple.">
+    <title>Conversational Transfers | Send Money to 166 Countries</title>
+    <meta name="description" content="Send money to 166 countries by chatting with AI. Available on Claude Desktop & ChatGPT. WhatsApp coming soon.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -16,268 +16,346 @@
         }
 
         :root {
-            --electric: #00ff88;
-            --cyber: #ff0080;
-            --deep: #0a0a1f;
-            --bright: #ffffff;
-            --muted: #6b7280;
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --success: #10b981;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --border: #e2e8f0;
         }
 
         body {
-            font-family: 'Space Grotesk', -apple-system, sans-serif;
-            background: var(--deep);
-            color: var(--bright);
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: #ffffff;
+            color: var(--dark);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
         ::selection {
-            background: var(--electric);
-            color: var(--deep);
-        }
-
-        /* Animated Background */
-        .bg-grid {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image:
-                linear-gradient(var(--electric) 1px, transparent 1px),
-                linear-gradient(90deg, var(--electric) 1px, transparent 1px);
-            background-size: 50px 50px;
-            opacity: 0.03;
-            z-index: 0;
-            animation: gridMove 20s linear infinite;
-        }
-
-        @keyframes gridMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
+            background: var(--primary);
+            color: white;
         }
 
         .container {
-            max-width: 1400px;
+            max-width: 1300px;
             margin: 0 auto;
             padding: 0 20px;
-            position: relative;
-            z-index: 1;
         }
 
         /* Navigation */
         nav {
-            padding: 30px 0;
+            padding: 25px 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         .logo {
             font-size: 1.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--electric), var(--cyber));
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
         .nav-cta {
-            padding: 12px 24px;
-            background: var(--electric);
-            color: var(--deep);
+            padding: 12px 28px;
+            background: var(--primary);
+            color: white;
             text-decoration: none;
-            border-radius: 8px;
+            border-radius: 10px;
             font-weight: 600;
             transition: all 0.2s;
-            border: 2px solid var(--electric);
+            box-shadow: 0 2px 8px rgba(99, 102, 241, 0.2);
         }
 
         .nav-cta:hover {
-            background: transparent;
-            color: var(--electric);
+            background: var(--secondary);
             transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(99, 102, 241, 0.3);
         }
 
         /* Hero */
         .hero {
-            padding: 100px 0;
-            position: relative;
+            padding: 80px 0 60px;
+            background: linear-gradient(180deg, var(--light) 0%, #ffffff 100%);
         }
 
         .hero-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 60px;
             align-items: center;
         }
 
         h1 {
-            font-size: clamp(3rem, 8vw, 6rem);
-            font-weight: 700;
-            line-height: 1;
-            margin-bottom: 30px;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            color: var(--dark);
         }
 
-        .highlight {
-            background: linear-gradient(135deg, var(--electric), var(--cyber));
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            display: inline-block;
-        }
-
-        .underline-cyber {
-            position: relative;
-            display: inline-block;
-        }
-
-        .underline-cyber::after {
-            content: '';
-            position: absolute;
-            bottom: 10px;
-            left: 0;
-            width: 100%;
-            height: 8px;
-            background: var(--cyber);
-            opacity: 0.3;
-            z-index: -1;
         }
 
         .hero-subtitle {
-            font-size: 1.5rem;
-            color: var(--muted);
-            margin-bottom: 40px;
-            max-width: 600px;
+            font-size: 1.3rem;
+            color: var(--gray);
+            margin-bottom: 32px;
+            line-height: 1.7;
         }
 
-        .stat-huge {
-            font-size: 10rem;
-            font-weight: 700;
-            line-height: 1;
-            background: linear-gradient(135deg, var(--electric), var(--cyber));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 20px;
-            font-family: 'JetBrains Mono', monospace;
+        .platform-badges {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 32px;
         }
 
-        .stat-label {
-            font-size: 2rem;
+        .platform-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 100px;
+            font-size: 0.9rem;
             font-weight: 600;
-            margin-bottom: 10px;
+            border: 2px solid;
         }
 
-        .stat-desc {
-            font-size: 1.1rem;
-            color: var(--muted);
-            max-width: 400px;
+        .badge-live {
+            background: #d1fae5;
+            border-color: var(--success);
+            color: #065f46;
+        }
+
+        .badge-beta {
+            background: #ddd6fe;
+            border-color: var(--secondary);
+            color: #5b21b6;
+        }
+
+        .badge-soon {
+            background: #fce7f3;
+            border-color: var(--accent);
+            color: #9f1239;
         }
 
         .btn-group {
             display: flex;
-            gap: 20px;
+            gap: 16px;
             flex-wrap: wrap;
         }
 
         .btn {
-            padding: 18px 36px;
+            padding: 16px 32px;
             border-radius: 12px;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 600;
             text-decoration: none;
             transition: all 0.2s;
-            border: 2px solid;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .btn-primary {
-            background: var(--electric);
-            color: var(--deep);
-            border-color: var(--electric);
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 16px rgba(99, 102, 241, 0.25);
         }
 
         .btn-primary:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+            background: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(99, 102, 241, 0.35);
         }
 
         .btn-outline {
-            background: transparent;
-            color: var(--bright);
-            border-color: var(--bright);
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
         }
 
         .btn-outline:hover {
-            background: var(--bright);
-            color: var(--deep);
+            background: var(--light);
         }
 
-        /* Terminal Demo */
-        .terminal {
-            background: #1a1a2e;
-            border: 2px solid var(--electric);
-            border-radius: 12px;
-            padding: 20px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.95rem;
-            box-shadow: 0 0 40px rgba(0, 255, 136, 0.2);
+        /* Stats Box */
+        .stats-box {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 50px;
+            border-radius: 24px;
+            color: white;
+            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.3);
             position: relative;
             overflow: hidden;
         }
 
-        .terminal::before {
+        .stats-box::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 40px;
-            background: linear-gradient(135deg, var(--electric), var(--cyber));
-            opacity: 0.1;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: float 20s ease-in-out infinite;
         }
 
-        .terminal-header {
-            display: flex;
-            gap: 8px;
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-30px, -30px) rotate(180deg); }
+        }
+
+        .stat-number {
+            font-size: 6rem;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 16px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .stat-label {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .stat-desc {
+            font-size: 1.05rem;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+
+        /* Platform Showcase Section */
+        .platforms-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--light);
+            color: var(--primary);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             margin-bottom: 20px;
-            padding-top: 10px;
         }
 
-        .terminal-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
+        h2 {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 900;
+            margin-bottom: 16px;
+            color: var(--dark);
         }
 
-        .dot-1 { background: var(--cyber); }
-        .dot-2 { background: var(--electric); }
-        .dot-3 { background: #fbbf24; }
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
 
-        .terminal-line {
-            margin: 12px 0;
-            padding-left: 20px;
+        .platforms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .platform-card {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+            transition: all 0.3s;
             position: relative;
         }
 
-        .terminal-line::before {
-            content: '▸';
-            position: absolute;
-            left: 0;
-            color: var(--electric);
+        .platform-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary);
         }
 
-        .user-input { color: var(--electric); }
-        .ai-response { color: var(--cyber); }
-        .system-msg { color: #fbbf24; }
-        .success { color: var(--electric); font-weight: 600; }
+        .platform-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .platform-name {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            color: var(--dark);
+        }
+
+        .platform-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-live {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .status-beta {
+            background: #ddd6fe;
+            color: #5b21b6;
+        }
+
+        .status-soon {
+            background: #fce7f3;
+            color: #9f1239;
+        }
+
+        .platform-desc {
+            color: var(--gray);
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
 
         /* Marquee */
         .marquee-section {
-            padding: 80px 0;
+            padding: 60px 0;
+            background: linear-gradient(135deg, var(--light) 0%, #ffffff 100%);
             overflow: hidden;
-            position: relative;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
         }
 
         .marquee {
@@ -293,133 +371,105 @@
         }
 
         .marquee-item {
-            font-size: 4rem;
-            font-weight: 700;
-            white-space: nowrap;
-            background: linear-gradient(135deg, var(--electric), var(--cyber));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* Sections */
-        section {
-            padding: 120px 0;
-            position: relative;
-        }
-
-        .section-tag {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--electric);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-        }
-
-        h2 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 700;
-            margin-bottom: 30px;
-            line-height: 1.1;
-        }
-
-        .section-subtitle {
-            font-size: 1.3rem;
-            color: var(--muted);
-            margin-bottom: 60px;
-            max-width: 700px;
-        }
-
-        /* Cards Grid */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 60px;
-        }
-
-        .card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 40px;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--electric), var(--cyber));
-            transform: scaleX(0);
-            transition: transform 0.3s;
-        }
-
-        .card:hover {
-            border-color: var(--electric);
-            transform: translateY(-8px);
-        }
-
-        .card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .card-icon {
             font-size: 3rem;
-            margin-bottom: 20px;
-            display: block;
+            font-weight: 900;
+            white-space: nowrap;
+            color: var(--dark);
+            opacity: 0.15;
         }
 
-        .card-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 15px;
+        /* Demo Section */
+        .demo-section {
+            padding: 80px 0;
+            background: white;
         }
 
-        .card-text {
-            color: var(--muted);
-            line-height: 1.8;
+        .terminal {
+            background: var(--dark);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            max-width: 900px;
+            margin: 0 auto;
         }
 
-        /* World Map Section */
+        .terminal-header {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot-1 { background: #ef4444; }
+        .dot-2 { background: #f59e0b; }
+        .dot-3 { background: #10b981; }
+
+        .terminal-line {
+            margin: 12px 0;
+            padding-left: 20px;
+            position: relative;
+            color: white;
+        }
+
+        .terminal-line::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+        }
+
+        .user-input { color: #60a5fa; }
+        .ai-response { color: #c084fc; }
+        .system-msg { color: #fbbf24; }
+        .success { color: #10b981; font-weight: 600; }
+
+        /* World Section */
         .world-section {
-            background: linear-gradient(135deg, rgba(0, 255, 136, 0.05), rgba(255, 0, 128, 0.05));
-            border-top: 2px solid var(--electric);
-            border-bottom: 2px solid var(--cyber);
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--light) 0%, #ffffff 100%);
         }
 
         .regions-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-top: 80px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
         }
 
         .region {
             text-align: center;
-        }
-
-        .region-icon {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            filter: grayscale(0);
+            padding: 30px;
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 16px;
             transition: all 0.3s;
         }
 
-        .region:hover .region-icon {
-            transform: scale(1.2) rotate(10deg);
+        .region:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 12px 40px rgba(99, 102, 241, 0.15);
+        }
+
+        .region-icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
         }
 
         .region-count {
-            font-size: 4rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--electric), var(--cyber));
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -427,25 +477,76 @@
         }
 
         .region-name {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-top: 10px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 10px 0;
+            color: var(--dark);
         }
 
         .region-examples {
-            font-size: 0.95rem;
-            color: var(--muted);
-            margin-top: 10px;
+            font-size: 0.9rem;
+            color: var(--gray);
         }
 
-        /* Comparison Table */
+        /* Features Grid */
+        .features-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .feature-card {
+            padding: 40px;
+            background: var(--light);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            background: white;
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(99, 102, 241, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .feature-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--dark);
+        }
+
+        .feature-desc {
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        /* Comparison */
+        .comparison-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--light) 0%, #ffffff 100%);
+        }
+
         .comparison {
-            background: rgba(255, 255, 255, 0.02);
-            border: 2px solid rgba(255, 255, 255, 0.1);
+            background: white;
+            border: 2px solid var(--border);
             border-radius: 16px;
             padding: 40px;
-            margin-top: 60px;
             overflow-x: auto;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
         }
 
         .comparison table {
@@ -454,126 +555,130 @@
         }
 
         .comparison th {
-            padding: 20px;
+            padding: 16px;
             text-align: left;
-            font-weight: 600;
-            font-size: 1.1rem;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            font-weight: 700;
+            font-size: 1.05rem;
+            border-bottom: 2px solid var(--border);
+            color: var(--dark);
         }
 
         .comparison td {
-            padding: 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 16px;
+            border-bottom: 1px solid var(--border);
+            color: var(--gray);
         }
 
         .comparison .highlight-col {
-            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(255, 0, 128, 0.1));
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(236, 72, 153, 0.05));
             font-weight: 600;
+            color: var(--primary);
         }
 
-        .comparison .win {
-            color: var(--electric);
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            color: white;
+        }
+
+        .cta-section .section-subtitle {
+            color: rgba(255, 255, 255, 0.9);
         }
 
         /* Footer */
         footer {
-            padding: 80px 0 40px;
-            border-top: 2px solid rgba(255, 255, 255, 0.1);
-            margin-top: 120px;
+            padding: 60px 0 40px;
+            background: var(--dark);
+            color: white;
         }
 
         .footer-grid {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 60px;
-            margin-bottom: 60px;
+            gap: 50px;
+            margin-bottom: 40px;
         }
 
         .footer-brand {
             font-size: 1.8rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--electric), var(--cyber));
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
 
         .footer-tagline {
-            color: var(--muted);
-            font-size: 1.1rem;
+            color: var(--gray);
+            line-height: 1.7;
         }
 
         .footer-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: var(--electric);
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: white;
         }
 
         .footer-links {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
         }
 
         .footer-link {
-            color: var(--muted);
+            color: var(--gray);
             text-decoration: none;
             transition: color 0.2s;
         }
 
         .footer-link:hover {
-            color: var(--electric);
+            color: white;
         }
 
         .footer-bottom {
             text-align: center;
-            padding-top: 40px;
+            padding-top: 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--muted);
-        }
-
-        /* Animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease-out;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
+            color: var(--gray);
+            font-size: 0.95rem;
         }
 
         /* Responsive */
         @media (max-width: 968px) {
             .hero-grid {
                 grid-template-columns: 1fr;
-                gap: 60px;
+                gap: 40px;
             }
 
-            .stat-huge {
-                font-size: 6rem;
+            .stat-number {
+                font-size: 4rem;
             }
 
             .footer-grid {
                 grid-template-columns: 1fr;
-                gap: 40px;
+                gap: 30px;
             }
 
             .marquee-item {
-                font-size: 2.5rem;
+                font-size: 2rem;
             }
         }
 
         @media (max-width: 640px) {
             h1 {
-                font-size: 2.5rem;
+                font-size: 2rem;
             }
 
-            .stat-huge {
-                font-size: 4rem;
+            .stat-number {
+                font-size: 3rem;
             }
 
             .btn-group {
@@ -582,18 +687,18 @@
 
             .btn {
                 width: 100%;
-                text-align: center;
+                justify-content: center;
             }
         }
     </style>
 </head>
 <body>
-    <div class="bg-grid"></div>
-
     <!-- Navigation -->
-    <nav class="container">
-        <div class="logo">CONVERSATIONAL.</div>
-        <a href="https://github.com/edisonjoao1/conversational-transfers" class="nav-cta">GitHub →</a>
+    <nav>
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+            <div class="logo">CONVERSATIONAL</div>
+            <a href="https://github.com/edisonjoao1/conversational-transfers" class="nav-cta">GitHub →</a>
+        </div>
     </nav>
 
     <!-- Hero -->
@@ -602,21 +707,76 @@
             <div class="hero-grid">
                 <div>
                     <h1>
-                        Send money like you <span class="highlight">send texts</span>
+                        Send money like you <span class="gradient-text">send texts</span>
                     </h1>
                     <p class="hero-subtitle">
-                        No forms. No dropdowns. No banking jargon. Just chat with AI and send money to anywhere in the world.
+                        No forms. No dropdowns. No banking jargon. Just chat with AI and send money anywhere in the world.
                     </p>
+
+                    <div class="platform-badges">
+                        <div class="platform-badge badge-live">
+                            ✅ Claude Desktop - Live
+                        </div>
+                        <div class="platform-badge badge-beta">
+                            🔄 ChatGPT - Beta
+                        </div>
+                        <div class="platform-badge badge-soon">
+                            📱 WhatsApp - Coming Soon
+                        </div>
+                    </div>
+
                     <div class="btn-group">
                         <a href="#demo" class="btn btn-primary">See it work →</a>
                         <a href="https://github.com/edisonjoao1/conversational-transfers" class="btn btn-outline">GitHub</a>
                     </div>
                 </div>
                 <div>
-                    <div class="stat-huge">166</div>
-                    <div class="stat-label">Countries. Zero friction.</div>
-                    <p class="stat-desc">
-                        The most comprehensive coverage through Wise API. From Argentina to Zimbabwe, if you can chat, you can send money there.
+                    <div class="stats-box">
+                        <div class="stat-number">166</div>
+                        <div class="stat-label">Countries. Zero friction.</div>
+                        <p class="stat-desc">
+                            The most comprehensive coverage through Wise API. From Argentina to Zimbabwe, if you can chat, you can send money there.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platforms Showcase -->
+    <section class="platforms-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Available Platforms</span>
+                <h2>Use your favorite AI</h2>
+                <p class="section-subtitle">
+                    Same powerful backend, available on the AI platforms you already use every day
+                </p>
+            </div>
+
+            <div class="platforms-grid">
+                <div class="platform-card">
+                    <span class="platform-icon">🤖</span>
+                    <h3 class="platform-name">Claude Desktop</h3>
+                    <span class="platform-status status-live">✅ Live</span>
+                    <p class="platform-desc">
+                        Full production deployment via MCP server integration. Real Wise API transfers with complete country validation. Setup in 5 minutes.
+                    </p>
+                </div>
+                <div class="platform-card">
+                    <span class="platform-icon">💬</span>
+                    <h3 class="platform-name">ChatGPT</h3>
+                    <span class="platform-status status-beta">🔄 Beta</span>
+                    <p class="platform-desc">
+                        Custom GPT with OpenAI moderation bypass. Server-side security for sensitive data. Deployed on Railway/Render.
+                    </p>
+                </div>
+                <div class="platform-card">
+                    <span class="platform-icon">📱</span>
+                    <h3 class="platform-name">WhatsApp</h3>
+                    <span class="platform-status status-soon">📅 Coming Q1 2026</span>
+                    <p class="platform-desc">
+                        WhatsApp Business API integration. Voice + text support. Multi-language conversations. Accessible to billions worldwide.
                     </p>
                 </div>
             </div>
@@ -658,15 +818,17 @@
     </div>
 
     <!-- Demo Section -->
-    <section id="demo">
+    <section class="demo-section" id="demo">
         <div class="container">
-            <div class="section-tag">LIVE DEMO</div>
-            <h2>This is how <span class="underline-cyber">simple</span> it should be</h2>
-            <p class="section-subtitle">
-                Traditional banks want you to remember SWIFT codes, routing numbers, and account types. We just want you to know how to chat.
-            </p>
+            <div class="section-header">
+                <span class="section-tag">Live Demo</span>
+                <h2>This is how <span class="gradient-text">simple</span> it should be</h2>
+                <p class="section-subtitle">
+                    Traditional banks want you to remember SWIFT codes and routing numbers. We just want you to know how to chat.
+                </p>
+            </div>
 
-            <div class="terminal fade-in">
+            <div class="terminal">
                 <div class="terminal-header">
                     <div class="terminal-dot dot-1"></div>
                     <div class="terminal-dot dot-2"></div>
@@ -693,97 +855,101 @@
     <!-- World Coverage -->
     <section class="world-section">
         <div class="container">
-            <div class="section-tag">GLOBAL REACH</div>
-            <h2>Every corner of the planet</h2>
-            <p class="section-subtitle">
-                166 countries. 150+ currencies. One conversation.
-            </p>
+            <div class="section-header">
+                <span class="section-tag">Global Reach</span>
+                <h2>Every corner of the planet</h2>
+                <p class="section-subtitle">
+                    166 countries. 150+ currencies. One conversation.
+                </p>
+            </div>
 
             <div class="regions-grid">
                 <div class="region">
                     <div class="region-icon">🌎</div>
                     <div class="region-count">35+</div>
                     <div class="region-name">Americas</div>
-                    <div class="region-examples">USA • Mexico • Brazil • Canada • Colombia</div>
+                    <div class="region-examples">USA • Mexico • Brazil</div>
                 </div>
                 <div class="region">
                     <div class="region-icon">🌍</div>
                     <div class="region-count">50+</div>
                     <div class="region-name">Europe</div>
-                    <div class="region-examples">UK • Germany • France • Spain • Italy</div>
+                    <div class="region-examples">UK • Germany • France</div>
                 </div>
                 <div class="region">
                     <div class="region-icon">🌏</div>
                     <div class="region-count">45+</div>
                     <div class="region-name">Asia-Pacific</div>
-                    <div class="region-examples">India • China • Japan • Philippines • Australia</div>
+                    <div class="region-examples">India • Japan • Philippines</div>
                 </div>
                 <div class="region">
                     <div class="region-icon">🌍</div>
                     <div class="region-count">25+</div>
                     <div class="region-name">Africa</div>
-                    <div class="region-examples">Nigeria • Kenya • South Africa • Ghana</div>
+                    <div class="region-examples">Nigeria • Kenya • Ghana</div>
                 </div>
                 <div class="region">
                     <div class="region-icon">🌏</div>
                     <div class="region-count">11+</div>
                     <div class="region-name">Middle East</div>
-                    <div class="region-examples">UAE • Saudi Arabia • Israel • Turkey</div>
+                    <div class="region-examples">UAE • Saudi • Turkey</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Features -->
-    <section>
+    <section class="features-section">
         <div class="container">
-            <div class="section-tag">WHY IT WORKS</div>
-            <h2>Built different</h2>
-            <p class="section-subtitle">
-                This isn't another fintech clone. This is what happens when you rebuild money transfers from first principles.
-            </p>
+            <div class="section-header">
+                <span class="section-tag">Why It Works</span>
+                <h2>Built different</h2>
+                <p class="section-subtitle">
+                    This isn't another fintech clone. This is money transfers rebuilt from first principles.
+                </p>
+            </div>
 
-            <div class="cards-grid">
-                <div class="card fade-in">
-                    <span class="card-icon">⚡</span>
-                    <h3 class="card-title">30 Second Transfers</h3>
-                    <p class="card-text">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">⚡</span>
+                    <h3 class="feature-title">30 Second Transfers</h3>
+                    <p class="feature-desc">
                         Banks take 10 minutes of form-filling. We take one sentence. That's 20x faster.
                     </p>
                 </div>
-                <div class="card fade-in">
-                    <span class="card-icon">🧠</span>
-                    <h3 class="card-title">AI Handles Complexity</h3>
-                    <p class="card-text">
-                        Colombian IDs, Mexican CLABEs, European IBANs - the AI knows them all. You don't have to.
+                <div class="feature-card">
+                    <span class="feature-icon">🧠</span>
+                    <h3 class="feature-title">AI Handles Complexity</h3>
+                    <p class="feature-desc">
+                        Colombian IDs, Mexican CLABEs, European IBANs - the AI knows them all.
                     </p>
                 </div>
-                <div class="card fade-in">
-                    <span class="card-icon">💱</span>
-                    <h3 class="card-title">Real-Time Rates</h3>
-                    <p class="card-text">
-                        Live rates from Wise API. Not estimates. Not markups. Just the real mid-market rate.
+                <div class="feature-card">
+                    <span class="feature-icon">💱</span>
+                    <h3 class="feature-title">Real-Time Rates</h3>
+                    <p class="feature-desc">
+                        Live rates from Wise API. Not estimates. Not markups. Just real mid-market rates.
                     </p>
                 </div>
-                <div class="card fade-in">
-                    <span class="card-icon">🔒</span>
-                    <h3 class="card-title">Bank-Level Security</h3>
-                    <p class="card-text">
-                        PSD2 compliant. Reference architecture. Your sensitive data never touches the AI.
+                <div class="feature-card">
+                    <span class="feature-icon">🔒</span>
+                    <h3 class="feature-title">Bank-Level Security</h3>
+                    <p class="feature-desc">
+                        PSD2 compliant. Reference architecture. Your data never touches the AI.
                     </p>
                 </div>
-                <div class="card fade-in">
-                    <span class="card-icon">🌐</span>
-                    <h3 class="card-title">Multi-Platform</h3>
-                    <p class="card-text">
-                        Claude Desktop (live), ChatGPT (beta), WhatsApp (soon). Same backend everywhere.
+                <div class="feature-card">
+                    <span class="feature-icon">🌐</span>
+                    <h3 class="feature-title">Multi-Platform</h3>
+                    <p class="feature-desc">
+                        Claude Desktop (live), ChatGPT (beta), WhatsApp (soon). Same backend.
                     </p>
                 </div>
-                <div class="card fade-in">
-                    <span class="card-icon">💰</span>
-                    <h3 class="card-title">Save 85% on Fees</h3>
-                    <p class="card-text">
-                        Banks charge $25-45 per transfer. We charge $2.99-4.65. That's your money, not theirs.
+                <div class="feature-card">
+                    <span class="feature-icon">💰</span>
+                    <h3 class="feature-title">Save 85% on Fees</h3>
+                    <p class="feature-desc">
+                        Banks charge $25-45. We charge $2.99-4.65. Keep your money.
                     </p>
                 </div>
             </div>
@@ -791,13 +957,15 @@
     </section>
 
     <!-- Comparison -->
-    <section>
+    <section class="comparison-section">
         <div class="container">
-            <div class="section-tag">THE NUMBERS</div>
-            <h2>Not even close</h2>
-            <p class="section-subtitle">
-                See how we stack up against traditional banks and money transfer apps
-            </p>
+            <div class="section-header">
+                <span class="section-tag">The Numbers</span>
+                <h2>Not even close</h2>
+                <p class="section-subtitle">
+                    See how we stack up against traditional banks and money transfer apps
+                </p>
+            </div>
 
             <div class="comparison">
                 <table>
@@ -814,37 +982,31 @@
                             <td><strong>Time to send</strong></td>
                             <td>10-15 min</td>
                             <td>3-5 min</td>
-                            <td class="highlight-col win">30 seconds</td>
+                            <td class="highlight-col">30 seconds</td>
                         </tr>
                         <tr>
                             <td><strong>Interface</strong></td>
                             <td>15+ form fields</td>
                             <td>5-10 step app</td>
-                            <td class="highlight-col win">Just chat</td>
+                            <td class="highlight-col">Just chat</td>
                         </tr>
                         <tr>
                             <td><strong>Fees</strong></td>
                             <td>$25-45</td>
                             <td>$3-10</td>
-                            <td class="highlight-col win">$2.99-4.65</td>
+                            <td class="highlight-col">$2.99-4.65</td>
                         </tr>
                         <tr>
                             <td><strong>Countries</strong></td>
                             <td>10-15</td>
                             <td>20-30</td>
-                            <td class="highlight-col win">166</td>
+                            <td class="highlight-col">166</td>
                         </tr>
                         <tr>
                             <td><strong>Learning curve</strong></td>
-                            <td>High - banking jargon</td>
-                            <td>Medium - app navigation</td>
-                            <td class="highlight-col win">Zero - just chat</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Hidden fees</strong></td>
-                            <td>Yes - rate markups</td>
-                            <td>Sometimes</td>
-                            <td class="highlight-col win">Never</td>
+                            <td>High</td>
+                            <td>Medium</td>
+                            <td class="highlight-col">Zero</td>
                         </tr>
                     </tbody>
                 </table>
@@ -852,73 +1014,17 @@
         </div>
     </section>
 
-    <!-- Use Cases -->
-    <section>
-        <div class="container">
-            <div class="section-tag">WHO IT'S FOR</div>
-            <h2>Real people. Real problems.</h2>
-            <p class="section-subtitle">
-                Whether you're supporting family across borders or paying contractors worldwide, we've got you.
-            </p>
-
-            <div class="cards-grid">
-                <div class="card fade-in">
-                    <span class="card-icon">👨‍👩‍👧‍👦</span>
-                    <h3 class="card-title">Family Remittances</h3>
-                    <p class="card-text">
-                        "I send $500 home every month. Used to take 30 minutes. Now it takes 30 seconds." - Maria, nurse in NYC
-                    </p>
-                </div>
-                <div class="card fade-in">
-                    <span class="card-icon">💼</span>
-                    <h3 class="card-title">Freelance Payments</h3>
-                    <p class="card-text">
-                        "I pay contractors in 8 countries. One chat handles everything." - Alex, agency owner
-                    </p>
-                </div>
-                <div class="card fade-in">
-                    <span class="card-icon">🎓</span>
-                    <h3 class="card-title">Student Support</h3>
-                    <p class="card-text">
-                        "My daughter studies abroad. Emergency money in 30 seconds, not 3 days." - James, father
-                    </p>
-                </div>
-                <div class="card fade-in">
-                    <span class="card-icon">🏢</span>
-                    <h3 class="card-title">Small Business</h3>
-                    <p class="card-text">
-                        "Pay suppliers while on calls. Real-time rates mean I always get the best deal." - Sarah, e-commerce
-                    </p>
-                </div>
-                <div class="card fade-in">
-                    <span class="card-icon">🆘</span>
-                    <h3 class="card-title">Emergency Help</h3>
-                    <p class="card-text">
-                        "Friend stranded abroad? Send money in under a minute through chat." - David, traveler
-                    </p>
-                </div>
-                <div class="card fade-in">
-                    <span class="card-icon">🌍</span>
-                    <h3 class="card-title">NGO Operations</h3>
-                    <p class="card-text">
-                        "Projects in 12 countries. Zero training needed - everyone can chat." - Emma, coordinator
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- CTA -->
-    <section>
-        <div class="container" style="text-align: center;">
-            <div class="section-tag">READY?</div>
-            <h2>Stop filling forms.<br>Start sending money.</h2>
-            <p class="section-subtitle" style="margin-left: auto; margin-right: auto;">
+    <section class="cta-section">
+        <div class="container">
+            <span class="section-tag" style="background: rgba(255,255,255,0.2); color: white;">Ready?</span>
+            <h2 style="margin-top: 20px;">Stop filling forms.<br>Start sending money.</h2>
+            <p class="section-subtitle" style="margin: 24px auto 40px;">
                 Open source. Well documented. Deploy in minutes. Or just star us on GitHub and watch the revolution unfold.
             </p>
             <div class="btn-group" style="justify-content: center;">
-                <a href="https://github.com/edisonjoao1/conversational-transfers" class="btn btn-primary">Get Started →</a>
-                <a href="https://github.com/edisonjoao1/conversational-transfers/blob/main/DEVELOPER-DOCS.md" class="btn btn-outline">Read Docs</a>
+                <a href="https://github.com/edisonjoao1/conversational-transfers" class="btn btn-primary" style="background: white; color: var(--primary);">Get Started →</a>
+                <a href="https://github.com/edisonjoao1/conversational-transfers/blob/main/DEVELOPER-DOCS.md" class="btn btn-outline" style="border-color: white; color: white;">Read Docs</a>
             </div>
         </div>
     </section>
@@ -928,7 +1034,7 @@
         <div class="container">
             <div class="footer-grid">
                 <div>
-                    <div class="footer-brand">CONVERSATIONAL.</div>
+                    <div class="footer-brand">CONVERSATIONAL</div>
                     <p class="footer-tagline">
                         Making money transfers as easy as sending a text. Built with Wise API, powered by AI, loved by humans.
                     </p>
@@ -978,17 +1084,6 @@
                 }
             });
         });
-
-        // Scroll animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
