@@ -385,70 +385,100 @@
         }
 
         .chat-container {
-            max-width: 700px;
+            max-width: 750px;
             margin: 0 auto;
-            background: var(--light);
-            border: 2px solid var(--border);
-            border-radius: 24px;
+            background: #ffffff;
+            border-radius: 32px;
             overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            box-shadow:
+                0 0 0 1px rgba(0, 0, 0, 0.05),
+                0 20px 60px rgba(99, 102, 241, 0.15),
+                0 30px 90px rgba(99, 102, 241, 0.1);
         }
 
         .chat-header {
-            background: white;
-            padding: 20px 24px;
-            border-bottom: 2px solid var(--border);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 24px 28px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chat-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" fill="rgba(255,255,255,0.05)"/></svg>');
+            opacity: 0.3;
         }
 
         .chat-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            width: 48px;
+            height: 48px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.95);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            position: relative;
+            z-index: 1;
         }
 
         .chat-info h3 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--dark);
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: white;
             margin: 0;
+            position: relative;
+            z-index: 1;
         }
 
         .chat-status {
-            font-size: 0.85rem;
-            color: var(--success);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.9);
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
+            position: relative;
+            z-index: 1;
         }
 
         .chat-status::before {
             content: '';
             width: 8px;
             height: 8px;
-            background: var(--success);
+            background: #10b981;
             border-radius: 50%;
             animation: pulse-dot 2s ease-in-out infinite;
+            box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
         }
 
         @keyframes pulse-dot {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+            0% {
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+            }
         }
 
         .chat-messages {
-            padding: 30px 24px;
+            padding: 32px 28px;
             display: flex;
             flex-direction: column;
-            gap: 16px;
-            min-height: 400px;
+            gap: 20px;
+            min-height: 500px;
+            background: linear-gradient(to bottom, #fafafa 0%, #ffffff 100%);
         }
 
         .message {
@@ -493,23 +523,25 @@
 
         .message-bubble {
             max-width: 75%;
-            padding: 14px 18px;
-            border-radius: 18px;
-            font-size: 0.95rem;
-            line-height: 1.5;
+            padding: 16px 20px;
+            border-radius: 20px;
+            font-size: 1rem;
+            line-height: 1.6;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
         }
 
         .message.user .message-bubble {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             color: white;
-            border-bottom-right-radius: 4px;
+            border-bottom-right-radius: 6px;
+            box-shadow: 0 4px 16px rgba(99, 102, 241, 0.25);
         }
 
         .message.ai .message-bubble {
             background: white;
             color: var(--dark);
-            border: 2px solid var(--border);
-            border-bottom-left-radius: 4px;
+            border: 1.5px solid #e5e7eb;
+            border-bottom-left-radius: 6px;
         }
 
         .message-time {
@@ -557,34 +589,59 @@
         }
 
         .transfer-success {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1));
-            border: 2px solid var(--success);
-            border-radius: 16px;
-            padding: 20px;
-            margin-top: 8px;
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            border: 2px solid #10b981;
+            border-radius: 20px;
+            padding: 24px;
+            margin-top: 16px;
+            box-shadow: 0 4px 16px rgba(16, 185, 129, 0.15);
         }
 
         .transfer-success-header {
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-weight: 700;
-            color: var(--success);
-            margin-bottom: 12px;
-            font-size: 1.05rem;
+            gap: 12px;
+            font-weight: 800;
+            color: #059669;
+            margin-bottom: 16px;
+            font-size: 1.15rem;
+        }
+
+        .transfer-success-icon {
+            width: 32px;
+            height: 32px;
+            background: #10b981;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
         }
 
         .transfer-details {
             display: grid;
-            gap: 8px;
-            color: var(--dark);
-            font-size: 0.9rem;
+            gap: 12px;
+            color: #065f46;
+            font-size: 0.95rem;
             line-height: 1.6;
         }
 
+        .transfer-detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(16, 185, 129, 0.15);
+        }
+
+        .transfer-detail-row:last-child {
+            border-bottom: none;
+        }
+
         .transfer-details strong {
-            color: var(--dark);
-            font-weight: 600;
+            color: #064e3b;
+            font-weight: 700;
         }
 
         /* World Section */
@@ -984,10 +1041,10 @@
 
             <div class="chat-container">
                 <div class="chat-header">
-                    <div class="chat-avatar">🤖</div>
+                    <div class="chat-avatar">🎋</div>
                     <div class="chat-info">
-                        <h3>Claude AI</h3>
-                        <div class="chat-status">Online</div>
+                        <h3>Bambu AI</h3>
+                        <div class="chat-status">Active now</div>
                     </div>
                 </div>
 
@@ -996,19 +1053,19 @@
                         <div class="message-avatar">👤</div>
                         <div>
                             <div class="message-bubble">
-                                Send $100 to Maria in Mexico
+                                Hey! I need to send $100 to Maria in Mexico
                             </div>
-                            <div class="message-time">Just now</div>
+                            <div class="message-time">2:34 PM</div>
                         </div>
                     </div>
 
                     <div class="message ai">
-                        <div class="message-avatar">🤖</div>
+                        <div class="message-avatar">🎋</div>
                         <div>
                             <div class="message-bubble">
-                                I'll help you send $100 to Maria in Mexico. I need her CLABE number to complete the transfer.
+                                Hi! I'll help you send $100 to Maria in Mexico. To complete the transfer, I'll need her CLABE number (Mexican bank account).
                             </div>
-                            <div class="message-time">Just now</div>
+                            <div class="message-time">2:34 PM</div>
                         </div>
                     </div>
 
@@ -1016,33 +1073,82 @@
                         <div class="message-avatar">👤</div>
                         <div>
                             <div class="message-bubble">
-                                032180000118359719
+                                Sure, it's 032180000118359719
                             </div>
-                            <div class="message-time">Just now</div>
+                            <div class="message-time">2:35 PM</div>
                         </div>
                     </div>
 
                     <div class="message ai">
-                        <div class="message-avatar">🤖</div>
+                        <div class="message-avatar">🎋</div>
+                        <div>
+                            <div class="message-bubble">
+                                Perfect! Let me verify that and get you the best rates...
+                            </div>
+                            <div class="message-time">2:35 PM</div>
+                        </div>
+                    </div>
+
+                    <div class="message ai">
+                        <div class="message-avatar">🎋</div>
                         <div style="width: 100%;">
                             <div class="message-bubble">
-                                Perfect! Creating your transfer via Wise API...
+                                All set! Here's your transfer confirmation:
 
                                 <div class="transfer-success">
                                     <div class="transfer-success-header">
-                                        <span>✓</span> Transfer Complete!
+                                        <div class="transfer-success-icon">✓</div>
+                                        <span>Transfer Complete</span>
                                     </div>
                                     <div class="transfer-details">
-                                        <div>💰 You sent: <strong>$100.00 USD</strong></div>
-                                        <div>📩 Maria receives: <strong>1,847.50 MXN</strong></div>
-                                        <div>💱 Exchange rate: <strong>18.48 MXN/USD</strong></div>
-                                        <div>💵 Wise fee: <strong>$2.99</strong></div>
-                                        <div>⏱️ Delivery: <strong>~35 minutes</strong></div>
-                                        <div>🆔 Transfer ID: <strong>#55656193</strong></div>
+                                        <div class="transfer-detail-row">
+                                            <span>💰 You sent</span>
+                                            <strong>$100.00 USD</strong>
+                                        </div>
+                                        <div class="transfer-detail-row">
+                                            <span>📩 Maria receives</span>
+                                            <strong>1,847.50 MXN</strong>
+                                        </div>
+                                        <div class="transfer-detail-row">
+                                            <span>💱 Exchange rate</span>
+                                            <strong>18.48 MXN/USD</strong>
+                                        </div>
+                                        <div class="transfer-detail-row">
+                                            <span>💵 Transfer fee</span>
+                                            <strong>$2.99</strong>
+                                        </div>
+                                        <div class="transfer-detail-row">
+                                            <span>⏱️ Estimated delivery</span>
+                                            <strong>~35 minutes</strong>
+                                        </div>
+                                        <div class="transfer-detail-row">
+                                            <span>🆔 Reference</span>
+                                            <strong>#BMB55656193</strong>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="message-time">Just now</div>
+                            <div class="message-time">2:35 PM</div>
+                        </div>
+                    </div>
+
+                    <div class="message user">
+                        <div class="message-avatar">👤</div>
+                        <div>
+                            <div class="message-bubble">
+                                That was so easy! Thanks! 🙌
+                            </div>
+                            <div class="message-time">2:36 PM</div>
+                        </div>
+                    </div>
+
+                    <div class="message ai">
+                        <div class="message-avatar">🎋</div>
+                        <div>
+                            <div class="message-bubble">
+                                You're welcome! Maria will receive a notification shortly. Need anything else?
+                            </div>
+                            <div class="message-time">2:36 PM</div>
                         </div>
                     </div>
                 </div>
