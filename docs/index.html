@@ -384,54 +384,208 @@
             background: white;
         }
 
-        .terminal {
-            background: var(--dark);
+        .chat-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--light);
             border: 2px solid var(--border);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .chat-header {
+            background: white;
+            padding: 20px 24px;
+            border-bottom: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .chat-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .chat-info h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin: 0;
+        }
+
+        .chat-status {
+            font-size: 0.85rem;
+            color: var(--success);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .chat-status::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .chat-messages {
+            padding: 30px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            min-height: 400px;
+        }
+
+        .message {
+            display: flex;
+            gap: 12px;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message.user {
+            flex-direction: row-reverse;
+        }
+
+        .message-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .message.user .message-avatar {
+            background: linear-gradient(135deg, #ec4899, #f43f5e);
+        }
+
+        .message.ai .message-avatar {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+
+        .message-bubble {
+            max-width: 75%;
+            padding: 14px 18px;
+            border-radius: 18px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .message.user .message-bubble {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+
+        .message.ai .message-bubble {
+            background: white;
+            color: var(--dark);
+            border: 2px solid var(--border);
+            border-bottom-left-radius: 4px;
+        }
+
+        .message-time {
+            font-size: 0.75rem;
+            color: var(--gray);
+            margin-top: 4px;
+            padding: 0 18px;
+        }
+
+        .message.user .message-time {
+            text-align: right;
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            padding: 14px 18px;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--gray);
+            border-radius: 50%;
+            animation: typing 1.4s ease-in-out infinite;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% {
+                transform: translateY(0);
+                opacity: 0.7;
+            }
+            30% {
+                transform: translateY(-10px);
+                opacity: 1;
+            }
+        }
+
+        .transfer-success {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1));
+            border: 2px solid var(--success);
             border-radius: 16px;
             padding: 20px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.95rem;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-            max-width: 900px;
-            margin: 0 auto;
+            margin-top: 8px;
         }
 
-        .terminal-header {
+        .transfer-success-header {
             display: flex;
-            gap: 8px;
-            margin-bottom: 24px;
-            padding-bottom: 16px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .terminal-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
-
-        .dot-1 { background: #ef4444; }
-        .dot-2 { background: #f59e0b; }
-        .dot-3 { background: #10b981; }
-
-        .terminal-line {
-            margin: 12px 0;
-            padding-left: 20px;
-            position: relative;
-            color: white;
-        }
-
-        .terminal-line::before {
-            content: '▸';
-            position: absolute;
-            left: 0;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
             color: var(--success);
+            margin-bottom: 12px;
+            font-size: 1.05rem;
         }
 
-        .user-input { color: #60a5fa; }
-        .ai-response { color: #c084fc; }
-        .system-msg { color: #fbbf24; }
-        .success { color: #10b981; font-weight: 600; }
+        .transfer-details {
+            display: grid;
+            gap: 8px;
+            color: var(--dark);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .transfer-details strong {
+            color: var(--dark);
+            font-weight: 600;
+        }
 
         /* World Section */
         .world-section {
@@ -828,25 +982,69 @@
                 </p>
             </div>
 
-            <div class="terminal">
-                <div class="terminal-header">
-                    <div class="terminal-dot dot-1"></div>
-                    <div class="terminal-dot dot-2"></div>
-                    <div class="terminal-dot dot-3"></div>
+            <div class="chat-container">
+                <div class="chat-header">
+                    <div class="chat-avatar">🤖</div>
+                    <div class="chat-info">
+                        <h3>Claude AI</h3>
+                        <div class="chat-status">Online</div>
+                    </div>
                 </div>
-                <div class="terminal-line user-input">You: Send $100 to Maria in Mexico</div>
-                <div class="terminal-line ai-response">AI: I'll help you with that. I need Maria's CLABE number.</div>
-                <div class="terminal-line user-input">You: 032180000118359719</div>
-                <div class="terminal-line system-msg">System: Creating transfer via Wise API...</div>
-                <div class="terminal-line success">✓ Transfer Complete!</div>
-                <div class="terminal-line">
-                    <br>
-                    💰 Sent: $100.00 USD<br>
-                    📩 Maria receives: 1,847.50 MXN<br>
-                    💱 Rate: 18.48 MXN/USD<br>
-                    💵 Fee: $2.99<br>
-                    ⏱️ Delivery: ~35 minutes<br>
-                    🆔 ID: #55656193
+
+                <div class="chat-messages">
+                    <div class="message user">
+                        <div class="message-avatar">👤</div>
+                        <div>
+                            <div class="message-bubble">
+                                Send $100 to Maria in Mexico
+                            </div>
+                            <div class="message-time">Just now</div>
+                        </div>
+                    </div>
+
+                    <div class="message ai">
+                        <div class="message-avatar">🤖</div>
+                        <div>
+                            <div class="message-bubble">
+                                I'll help you send $100 to Maria in Mexico. I need her CLABE number to complete the transfer.
+                            </div>
+                            <div class="message-time">Just now</div>
+                        </div>
+                    </div>
+
+                    <div class="message user">
+                        <div class="message-avatar">👤</div>
+                        <div>
+                            <div class="message-bubble">
+                                032180000118359719
+                            </div>
+                            <div class="message-time">Just now</div>
+                        </div>
+                    </div>
+
+                    <div class="message ai">
+                        <div class="message-avatar">🤖</div>
+                        <div style="width: 100%;">
+                            <div class="message-bubble">
+                                Perfect! Creating your transfer via Wise API...
+
+                                <div class="transfer-success">
+                                    <div class="transfer-success-header">
+                                        <span>✓</span> Transfer Complete!
+                                    </div>
+                                    <div class="transfer-details">
+                                        <div>💰 You sent: <strong>$100.00 USD</strong></div>
+                                        <div>📩 Maria receives: <strong>1,847.50 MXN</strong></div>
+                                        <div>💱 Exchange rate: <strong>18.48 MXN/USD</strong></div>
+                                        <div>💵 Wise fee: <strong>$2.99</strong></div>
+                                        <div>⏱️ Delivery: <strong>~35 minutes</strong></div>
+                                        <div>🆔 Transfer ID: <strong>#55656193</strong></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="message-time">Just now</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
